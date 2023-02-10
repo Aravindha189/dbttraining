@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_customers
+    columns:
+    - name: customer_id
+      description: Primary key
+      tests:
+      - unique
+      - not_null
+      
+  - name: stg_orders
+    columns:
+    - name: status
+      description: status of the order
+      tests:
+      - accepted_values
+          values:['completed','returned']
+      - not_null
+    - name: customer_id
+      tests:
+      - not_null
+      - relationships:
+          to: ref('stg_customers')
+          field: customer_id

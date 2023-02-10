@@ -1,0 +1,15 @@
+version: 2
+
+metrics:
+  - name: total_orders
+    label: ordersnew
+    model: ref('stg_orders')
+    description: "Total orders in order table"
+
+    calculation_method: count_distinct
+    expression: order_id
+
+    timestamp: order_date
+
+    dimensions:
+      - status

@@ -36,3 +36,13 @@ models:
     # Applies to all files under models/example/
     example:
       materialized: view
+    jaffle_shop:
+      materialized: view
+      +pre-hook: insert into ANALYTICS.audit.dbt_audit_logs(executionstarttime, executionendtime, objectname) values (current_timestamp(), null, '{{this}}' )
+seeds:
+  my_new_project:
+      jaffle_shop:
+        schema: seed_data
+      qwtproject:
+        schema: SEED_DATA
+        database: QWT
