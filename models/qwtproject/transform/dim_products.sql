@@ -7,7 +7,6 @@ with
 
     suppliers as (select * from {{ ref("stg_suppliers")}}),
 
-
     final as (
         select
             ProductID,
